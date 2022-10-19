@@ -43,6 +43,8 @@ public class MecanumTeleop extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareMecanum robot           = new HardwareMecanum();   // Use a Mecanum's hardware
+    double armPosition              = robot.ARM_HOME;          // Servo's position
+    final double ARM_SPEED          = 0.01;                    // Sets rate to move servo
 
     @Override
     public void runOpMode() {
@@ -82,7 +84,7 @@ public class MecanumTeleop extends LinearOpMode {
                 robot.frontLeftDrive.setPower(spin);
                 robot.backLeftDrive.setPower(spin);
             }
-        else {
+            else {
                 // if no one is pressing the right joystick, do the normal driving code
                 y1 = -gamepad1.left_stick_y;
                 x1 = gamepad1.left_stick_x;
@@ -102,8 +104,21 @@ public class MecanumTeleop extends LinearOpMode {
                 robot.backLeftDrive.setPower(y2);
             }
 
+            // Use gamepad Y & A raise and lower the arm
+            if (gamepad1.a) // if the "a" button is pressed on the gamepad, do this next line of code
+                armPosition += ARM_SPEED; // add to the servo position so it moves
+            else if (gamepad1.y) // if the "y" button is pressed, then do the next line of code
+                armPosition -= ARM_SPEED; // subtract from the servo position so it moves the other direction
+
+
+            // Move both servos to the new position
+            armPosition = Range.clip(armPosition, robot.ARM_MIN_RANGE, robot.ARM_MAX_RANGE); // make sure the position is valid
+            robot.arm.setPosition(armPosition); // this code here ACTUALLY sets the position of the servo so it moves.
+
+
             // Send telemetry message to signify robot running;
-            telemetry.addData("y1",  "Offset = %.2f", y1);
+            telemetry.addData("arm", "%.2f", armPosition); // VERY IMPORTANT CODE, shows the values on the phone of the servo
+            telemetry.addData("y1",  "%.2f", y1);
             telemetry.addData("x1",  "%.2f", x1);
             telemetry.addData("y2",  "%.2f", y2);
             telemetry.addData("x2",  "%.2f", x2);

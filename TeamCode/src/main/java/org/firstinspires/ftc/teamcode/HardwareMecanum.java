@@ -56,10 +56,15 @@ public class HardwareMecanum
     public DcMotor  frontRightDrive  = null;
     public DcMotor  backLeftDrive     = null;
     public DcMotor  backRightDrive     = null;
+    public Servo arm = null;
 
-    public static final double MID_SERVO       =  0.5 ;
-    public static final double ARM_UP_POWER    =  0.45 ;
-    public static final double ARM_DOWN_POWER  = -0.45 ;
+    public static final double ARM_HOME       =  0.0; // Starting position for Servo Arm
+    public static final double ARM_MIN_RANGE = 0.0; // Smallest number value allowed for servo position
+    public static final double ARM_MAX_RANGE = 1.0; // Largest number value allowed for servo position
+
+    /*public static final double MID_SERVO       =  0.5 ;*/
+    /*public static final double ARM_UP_POWER    =  0.45 ;*/
+    /*public static final double ARM_DOWN_POWER  = -0.45 ;*/
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -98,6 +103,10 @@ public class HardwareMecanum
         frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        // Define and initialize ALL installed servos.
+        arm = hwMap.servo.get("arm"); // set equal to name of the servo motor in the phone
+        arm.setPosition(ARM_HOME); // setPosition actually sets the servos position and moves it
 
     }
  }
