@@ -46,15 +46,15 @@ public class MecanumTeleop extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        double x1; // left/right
-        double y1; // front/back
+        double x1 = 0; // set the initial value, that will change when the joystick is moved
+        double y1 = 0;
 
         double fortyFiveInRads = -Math.PI/4;
         double cosine45 = Math.cos(fortyFiveInRads);
         double sine45 = Math.sin(fortyFiveInRads);
 
-        double x2;
-        double y2;
+        double x2 = 0;
+        double y2 = 0;
 
 
         /* Initialize the hardware variables.
@@ -72,27 +72,41 @@ public class MecanumTeleop extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
+            double spin = gamepad1.right_stick_x;
 
-            y1 = -gamepad1.left_stick_y;
-            x1  =  gamepad1.right_stick_x;
+            if (Math.abs(spin) > 0.1) {
+                // if someone is moving the right joystick, spin
+                robot.frontRightDrive.setPower(-spin);
+                robot.backRightDrive.setPower(-spin);
+
+                robot.frontLeftDrive.setPower(spin);
+                robot.backLeftDrive.setPower(spin);
+            }
+        else {
+                // if no one is pressing the right joystick, do the normal driving code
+                y1 = -gamepad1.left_stick_y;
+                x1 = gamepad1.left_stick_x;
 
 
-            // need to rotate 45 degrees
+                // need to rotate 45 degrees
 
-            y2 = y1*cosine45 + x1*sine45;
-            x2 = x1*cosine45 - y1*sine45;
+                y2 = y1 * cosine45 + x1 * sine45;
+                x2 = x1 * cosine45 - y1 * sine45;
 
 
-            // Output the safe vales to the motor drives.
-            robot.frontLeftDrive.setPower(x2);
-            robot.backRightDrive.setPower(x2);
+                // Output the safe vales to the motor drives.
+                robot.frontLeftDrive.setPower(x2);
+                robot.backRightDrive.setPower(x2);
 
-            robot.frontRightDrive.setPower(y2);
-            robot.backLeftDrive.setPower(y2);
+                robot.frontRightDrive.setPower(y2);
+                robot.backLeftDrive.setPower(y2);
+            }
 
             // Send telemetry message to signify robot running;
-            telemetry.addData("x1",  "Offset = %.2f", x1);
-            telemetry.addData("y1",  "%.2f", y1);
+            telemetry.addData("y1",  "Offset = %.2f", y1);
+            telemetry.addData("x1",  "%.2f", x1);
+            telemetry.addData("y2",  "%.2f", y2);
+            telemetry.addData("x2",  "%.2f", x2);
             telemetry.update();
 
             // Pace this loop
