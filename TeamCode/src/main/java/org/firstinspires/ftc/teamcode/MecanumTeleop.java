@@ -43,8 +43,8 @@ public class MecanumTeleop extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareMecanum robot           = new HardwareMecanum();   // Use a Mecanum's hardware
-    double armPosition              = robot.ARM_HOME;          // Servo's position
-    final double ARM_SPEED          = 0.01;                    // Sets rate to move servo
+    double clawPosition              = robot.CLAW_HOME;          // Servo's position
+    final double CLAW_SPEED          = 0.10;                    // Sets rate to move servo
 
     @Override
     public void runOpMode() {
@@ -106,22 +106,31 @@ public class MecanumTeleop extends LinearOpMode {
 
             // Use gamepad Y & A raise and lower the arm
             if (gamepad1.a) // if the "a" button is pressed on the gamepad, do this next line of code
-                armPosition += ARM_SPEED; // add to the servo position so it moves
+                clawPosition += CLAW_SPEED; // add to the servo position so it moves
             else if (gamepad1.y) // if the "y" button is pressed, then do the next line of code
-                armPosition -= ARM_SPEED; // subtract from the servo position so it moves the other direction
+                clawPosition -= CLAW_SPEED; // subtract from the servo position so it moves the other direction
 
 
             // Move both servos to the new position
-            armPosition = Range.clip(armPosition, robot.ARM_MIN_RANGE, robot.ARM_MAX_RANGE); // make sure the position is valid
-            robot.arm.setPosition(armPosition); // this code here ACTUALLY sets the position of the servo so it moves.
+            clawPosition = Range.clip(clawPosition, robot.CLAW_MIN_RANGE, robot.CLAW_MAX_RANGE); // make sure the position is valid
+            robot.clawServo.setPosition(clawPosition); // this code here ACTUALLY sets the position of the servo so it moves.
 
+            int turretPos = robot.turretMotor.getCurrentPosition();
+
+            if (gamepad1.dpad_right && turretPos < 50)
+                robot.turretMotor.setPower(0.25);
+            else if (gamepad1.dpad_left && turretPos > -50)
+                robot.turretMotor.setPower(-0.25);
+            else
+                robot.turretMotor.setPower(0);
 
             // Send telemetry message to signify robot running;
-            telemetry.addData("arm", "%.2f", armPosition); // VERY IMPORTANT CODE, shows the values on the phone of the servo
+            telemetry.addData("claw", "%.2f", clawPosition); // VERY IMPORTANT CODE, shows the values on the phone of the servo
             telemetry.addData("y1",  "%.2f", y1);
             telemetry.addData("x1",  "%.2f", x1);
             telemetry.addData("y2",  "%.2f", y2);
             telemetry.addData("x2",  "%.2f", x2);
+            telemetry.addData("turret position", "%i", turretPos);
             telemetry.update();
 
             // Pace this loop
