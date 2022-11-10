@@ -109,6 +109,7 @@ public class HardwareMecanum
         frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Set all motors to zero power
         frontLeftDrive.setPower(0);
