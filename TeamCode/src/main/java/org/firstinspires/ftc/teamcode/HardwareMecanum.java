@@ -56,20 +56,25 @@ public class HardwareMecanum
     public DcMotor  frontRightDrive  = null;
     public DcMotor  backLeftDrive    = null;
     public DcMotor  backRightDrive   = null;
-    public DcMotor  turretMotor      = null;
+    public DcMotor  liftMotor1             = null;
+    //public DcMotor  turretMotor      = null; // not in use
     public Servo    clawServo        = null;
 
     public static final double CLAW_HOME      = 0.0; // Starting position for Servo Claw
     public static final double CLAW_MIN_RANGE = 0.0; // Smallest number value allowed for servo position
     public static final double CLAW_MAX_RANGE = 1.0; // Largest number value allowed for servo position
 
-    public static final double TURRET_HOME      = 0.0; // Starting position for motor
-    public static final double TURRET_MIN_RANGE = 0.0; // Smallest number value allowed for motor position
-    public static final double TURRET_MAX_RANGE = 1.0; // Largest number value allowed for motor position
+    public static final double LIFT_HOME      = 0.0; // Starting position for motor
+    public static final double LIFT_MIN_RANGE = 0.0; // Smallest number value allowed for motor position
+    public static final double LIFT_MAX_RANGE = 1.0; // Largest number value allowed for motor position
 
-    /*public static final double MID_SERVO       =  0.5 ;*/
-    /*public static final double ARM_UP_POWER    =  0.45 ;*/
-    /*public static final double ARM_DOWN_POWER  = -0.45 ;*/
+    /*public static final double TURRET_HOME      = 0.0; // Starting position for motor
+    public static final double TURRET_MIN_RANGE = 0.0; // Smallest number value allowed for motor position
+    public static final double TURRET_MAX_RANGE = 1.0; // Largest number value allowed for motor position*/
+
+    /*public static final double MID_SERVO       =  0.5 ;
+    public static final double ARM_UP_POWER    =  0.45 ;
+    public static final double ARM_DOWN_POWER  = -0.45 ;*/
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -91,7 +96,7 @@ public class HardwareMecanum
         backLeftDrive = hwMap.get(DcMotor.class, "leftBack");
         backRightDrive = hwMap.get(DcMotor.class, "rightBack");
 
-        turretMotor = hwMap.get(DcMotor.class, "turret");
+        //turretMotor = hwMap.get(DcMotor.class, "turret"); // not in use
 
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -111,7 +116,9 @@ public class HardwareMecanum
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
 
-        turretMotor.setPower(0);
+        liftMotor1.setPower(0);
+
+        // turretMotor.setPower(0); not in use
 
         // Define and initialize ALL installed servos.
         clawServo = hwMap.servo.get("claw"); // set equal to name of the servo motor in the phone
