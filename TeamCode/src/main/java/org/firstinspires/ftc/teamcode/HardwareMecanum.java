@@ -95,6 +95,7 @@ public class HardwareMecanum
         frontRightDrive = hwMap.get(DcMotor.class, "rightFront");
         backLeftDrive = hwMap.get(DcMotor.class, "leftBack");
         backRightDrive = hwMap.get(DcMotor.class, "rightBack");
+        liftMotor1 = hwMap.get(DcMotor.class, "liftMotor1");
 
         //turretMotor = hwMap.get(DcMotor.class, "turret"); // not in use
 
