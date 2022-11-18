@@ -56,17 +56,14 @@ public class HardwareMecanum
     public DcMotor  frontRightDrive  = null;
     public DcMotor  backLeftDrive    = null;
     public DcMotor  backRightDrive   = null;
-    public DcMotor  liftMotor1             = null;
+    public DcMotor  liftMotor1       = null;
+    public DcMotor  liftMotor2       = null;
     //public DcMotor  turretMotor      = null; // not in use
     public Servo    clawServo        = null;
 
     public static final double CLAW_HOME      = 0.0; // Starting position for Servo Claw
     public static final double CLAW_MIN_RANGE = 0.0; // Smallest number value allowed for servo position
     public static final double CLAW_MAX_RANGE = 1.0; // Largest number value allowed for servo position
-
-    public static final double LIFT_HOME      = 0.0; // Starting position for motor
-    public static final double LIFT_MIN_RANGE = 0.0; // Smallest number value allowed for motor position
-    public static final double LIFT_MAX_RANGE = 1.0; // Largest number value allowed for motor position
 
     /*public static final double TURRET_HOME      = 0.0; // Starting position for motor
     public static final double TURRET_MIN_RANGE = 0.0; // Smallest number value allowed for motor position
@@ -96,6 +93,7 @@ public class HardwareMecanum
         backLeftDrive = hwMap.get(DcMotor.class, "leftBack");
         backRightDrive = hwMap.get(DcMotor.class, "rightBack");
         liftMotor1 = hwMap.get(DcMotor.class, "liftMotor1");
+        liftMotor2 = hwMap.get(DcMotor.class, "liftMotor2");
 
         //turretMotor = hwMap.get(DcMotor.class, "turret"); // not in use
 
@@ -111,6 +109,7 @@ public class HardwareMecanum
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Set all motors to zero power
         frontLeftDrive.setPower(0);
@@ -119,6 +118,7 @@ public class HardwareMecanum
         backRightDrive.setPower(0);
 
         liftMotor1.setPower(0);
+        liftMotor2.setPower(0);
 
         // turretMotor.setPower(0); not in use
 
