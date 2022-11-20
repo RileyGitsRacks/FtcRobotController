@@ -115,16 +115,21 @@ public class MecanumTeleop extends LinearOpMode {
             clawPosition = Range.clip(clawPosition, robot.CLAW_MIN_RANGE, robot.CLAW_MAX_RANGE); // make sure the position is valid
             robot.clawServo.setPosition(clawPosition); // this code here ACTUALLY sets the position of the servo so it moves.
 
-            double lift1Pos = robot.liftMotor1.getCurrentPosition();
-            double lift2Pos = robot.liftMotor1.getCurrentPosition();
+            int lift1Pos = robot.liftMotor1.getCurrentPosition();
+            int lift2Pos = robot.liftMotor2.getCurrentPosition();
 
             // Use gamepad DPAD UP & DOWN
-            if (gamepad1.dpad_up && lift1Pos < -1000)
-                robot.liftMotor1.setPower(-0.25);
-            else if (gamepad1.dpad_down && lift1Pos > 0)
+            if (gamepad1.dpad_up && lift1Pos < 1000)
                 robot.liftMotor1.setPower(0.25);
+            else if (gamepad1.dpad_down && lift1Pos > 0 && lift2Pos <= 0)
+                robot.liftMotor1.setPower(-0.25);
             else
                 robot.liftMotor1.setPower(0);
+
+            if (gamepad1.dpad_up && lift1Pos >= 1000)
+                robot.liftMotor2.setPower(0.25);
+            else if (gamepad1.dpad_down && lift1Pos >= 1000 && lift2Pos > 0)
+                robot.liftMotor2.setPower(-0.25);
 
             /*int turretPos = robot.turretMotor.getCurrentPosition();
 
@@ -141,8 +146,8 @@ public class MecanumTeleop extends LinearOpMode {
             telemetry.addData("x1",  "%.2f", x1);
             telemetry.addData("y2",  "%.2f", y2);
             telemetry.addData("x2",  "%.2f", x2);
-            telemetry.addData("lift1 position", "%.2f", lift1Pos);
-            telemetry.addData("lift2 position", "%.2f", lift2Pos);
+            telemetry.addData("lift1 position", "%d", lift1Pos);
+            telemetry.addData("lift2 position", "%d", lift2Pos);
             //telemetry.addData("turret position", "%i", turretPos); not in use
             telemetry.update();
 
