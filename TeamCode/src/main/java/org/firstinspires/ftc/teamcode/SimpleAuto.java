@@ -101,15 +101,15 @@ public class SimpleAuto extends LinearOpMode {
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
         // Drive the robot forward
-        drive(1,0);
+        drive(0.5,0);
         sleep(1000); // stay here on the code for 1 second, don't move on to the next instructions.
 
         // Turn the robot left
-        spin(-1);
+        spin(-0.5);
         sleep(1000);
 
         // Drive the robot forward
-        drive(1,0);
+        drive(0.5,0);
         sleep(1000);
 
         //Park, stop the motors
