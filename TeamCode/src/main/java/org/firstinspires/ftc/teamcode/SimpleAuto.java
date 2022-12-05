@@ -106,33 +106,29 @@ public class SimpleAuto extends LinearOpMode {
 
         // Turn the robot left
         spin(-0.5);
-        sleep(1000);
+        sleep(700);
 
-        // Drive the robot forward
+        /* Drive the robot forward
         drive(0.5,0);
-        sleep(1000);
+        sleep(1000);*/
 
         //Park, stop the motors
         drive(0,0);
 
-        // Rise lift1
-        robot.liftMotor1.setPower(0.25);
-        sleep(1000);
+        // Rise lifts
+        robot.liftMotor1.setPower(1);
+        robot.liftMotor2.setPower(1);
+        sleep(2000);
         robot.liftMotor1.setPower(0);
-
-        // Rise lift2
-        robot.liftMotor2.setPower(0.25);
-        sleep(1000);
-
-        // Lower lift2
-        robot.liftMotor2.setPower(-0.25);
-        sleep(1000);
         robot.liftMotor2.setPower(0);
 
-        // Lower lift1
-        robot.liftMotor1.setPower(-0.25);
-        sleep(1000);
+        //Lower lifts
+        robot.liftMotor1.setPower(-1);
+        robot.liftMotor2.setPower(-1);
+        sleep(2000);
         robot.liftMotor1.setPower(0);
+        robot.liftMotor2.setPower(0);
+
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
