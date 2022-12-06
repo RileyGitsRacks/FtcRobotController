@@ -95,6 +95,9 @@ public class SimpleAuto extends LinearOpMode {
         int lift1Pos = robot.liftMotor1.getCurrentPosition();
         int lift2Pos = robot.liftMotor2.getCurrentPosition();
 
+        double clawPosition              = robot.CLAW_HOME;          // Servo's position
+        final double CLAW_SPEED          = 0.10;                    // Sets rate to move servo
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
@@ -108,10 +111,6 @@ public class SimpleAuto extends LinearOpMode {
         spin(-0.5);
         sleep(700);
 
-        /* Drive the robot forward
-        drive(0.5,0);
-        sleep(1000);*/
-
         //Park, stop the motors
         drive(0,0);
 
@@ -121,6 +120,35 @@ public class SimpleAuto extends LinearOpMode {
         sleep(2000);
         robot.liftMotor1.setPower(0);
         robot.liftMotor2.setPower(0);
+
+        //Drive the robot forward
+        drive(0.5,0);
+        sleep(300);
+
+        //Park, stop the motors
+        drive(0,0);
+
+        robot.clawServo.setPosition(180);
+        sleep(1000);
+
+        robot.clawServo.setPosition(0);
+
+        //Drive the robot backward
+        drive(-0.5,0);
+        sleep(300);
+
+        // Turn the robot right
+        spin(0.5);
+        sleep(700);
+
+        //Drive the robot backward
+        drive(-0.5,0);
+        sleep(1000);
+
+        //Park, stop the motors
+        drive(0,0);
+
+
 
         //Lower lifts
         robot.liftMotor1.setPower(-1);

@@ -86,8 +86,8 @@ public class MecanumTeleop extends LinearOpMode {
             }
             else {
                 // if no one is pressing the right joystick, do the normal driving code
-                y1 = -gamepad1.left_stick_y;
-                x1 = gamepad1.left_stick_x;
+                y1 = -gamepad1.left_stick_y * 0.5;
+                x1 = gamepad1.left_stick_x * 0.5;
 
 
                 // need to rotate 45 degrees
@@ -119,7 +119,7 @@ public class MecanumTeleop extends LinearOpMode {
             int lift2Pos = robot.liftMotor2.getCurrentPosition();
 
             // Use gamepad DPAD UP & DOWN
-            if (gamepad1.dpad_up && lift1Pos <= 1300)
+            if (gamepad1.dpad_up && lift1Pos <= 1350)
                 robot.liftMotor1.setPower(1);
             else if (gamepad1.dpad_down && lift1Pos > -10 && lift2Pos <= 0)
                 robot.liftMotor1.setPower(-1);
