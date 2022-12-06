@@ -123,10 +123,11 @@ public class SimpleAuto extends LinearOpMode {
 
         //Drive the robot forward
         drive(0.5,0);
-        sleep(300);
+        sleep(100);
 
         //Park, stop the motors
         drive(0,0);
+        sleep(700);
 
         robot.clawServo.setPosition(180);
         sleep(1000);
@@ -135,7 +136,7 @@ public class SimpleAuto extends LinearOpMode {
 
         //Drive the robot backward
         drive(-0.5,0);
-        sleep(300);
+        sleep(100);
 
         // Turn the robot right
         spin(0.5);
