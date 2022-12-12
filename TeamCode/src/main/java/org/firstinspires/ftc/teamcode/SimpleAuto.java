@@ -117,7 +117,7 @@ public class SimpleAuto extends LinearOpMode {
         // Rise lifts
         robot.liftMotor1.setPower(1);
         robot.liftMotor2.setPower(1);
-        sleep(2000);
+        sleep(2300);
         robot.liftMotor1.setPower(0);
         robot.liftMotor2.setPower(0);
 
@@ -133,6 +133,7 @@ public class SimpleAuto extends LinearOpMode {
         sleep(1000);
 
         robot.clawServo.setPosition(0);
+        sleep(500);
 
         //Drive the robot backward
         drive(-0.5,0);
