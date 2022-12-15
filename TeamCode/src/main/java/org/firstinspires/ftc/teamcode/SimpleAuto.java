@@ -35,24 +35,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/**
- * This file illustrates the concept of driving a path based on time.
- * The code is structured as a LinearOpMode
- *
- * The code assumes that you do NOT have encoders on the wheels,
- *   otherwise you would use: RobotAutoDriveByEncoder;
- *
- *   The desired path in this example is:
- *   - Drive forward for 3 seconds
- *   - Spin right for 1.3 seconds
- *   - Drive Backward for 1 Second
- *
- *  The code is written in a simple form with no optimizations.
- *  However, there are several ways that this type of sequence could be streamlined,
- *
- * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
- */
 
 @Autonomous(name="Mecanum: Simple Autonomous", group="Mecanum")
 //@Disabled
@@ -109,7 +91,7 @@ public class SimpleAuto extends LinearOpMode {
 
         // Turn the robot right
         spin(0.5);
-        sleep(650);
+        sleep(600);
 
         //Park, stop the motors
         drive(0,0);
@@ -117,7 +99,7 @@ public class SimpleAuto extends LinearOpMode {
         // Rise lifts
         robot.liftMotor1.setPower(1);
         robot.liftMotor2.setPower(1);
-        sleep(2500);
+        sleep(2900);
         robot.liftMotor1.setPower(0);
         robot.liftMotor2.setPower(0);
 
@@ -139,9 +121,20 @@ public class SimpleAuto extends LinearOpMode {
         drive(-0.5,0);
         sleep(100);
 
+        //Park, stop the motors
+        drive(0,0);
+        sleep(500);
+
+        //Lower lifts
+        robot.liftMotor1.setPower(-1);
+        robot.liftMotor2.setPower(-1);
+        sleep(3000);
+        robot.liftMotor1.setPower(0);
+        robot.liftMotor2.setPower(0);
+
         // Turn the robot left
         spin(-0.5);
-        sleep(650);
+        sleep(600);
 
         //Drive the robot backward
         drive(-0.5,0);
@@ -150,14 +143,8 @@ public class SimpleAuto extends LinearOpMode {
 
         //Park, stop the motors
         drive(0,0);
+        sleep(500);
 
-
-        //Lower lifts
-        robot.liftMotor1.setPower(-1);
-        robot.liftMotor2.setPower(-1);
-        sleep(2500);
-        robot.liftMotor1.setPower(0);
-        robot.liftMotor2.setPower(0);
 
         // Drive the robot sideways
         drive(0,0.5);

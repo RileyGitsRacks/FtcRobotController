@@ -74,7 +74,7 @@ public class MecanumTeleop extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            double spin = gamepad1.right_stick_x;
+            double spin = gamepad1.right_stick_x * 0.5;
 
             if (Math.abs(spin) > 0.1) {
                 // if someone is moving the right joystick, spin
