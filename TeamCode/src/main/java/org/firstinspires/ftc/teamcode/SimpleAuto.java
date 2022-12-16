@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name="Mecanum: Simple Autonomous", group="Mecanum")
+@Autonomous(name="Mecanum: Right Pole Autonomous", group="Mecanum")
 //@Disabled
 public class SimpleAuto extends LinearOpMode {
 
@@ -89,11 +89,6 @@ public class SimpleAuto extends LinearOpMode {
         drive(0.5,0);
         sleep(1500); // stay here on the code for 1 second, don't move on to the next instructions.
 
-        // Turn the robot right
-        spin(0.5);
-        sleep(600);
-
-        //Park, stop the motors
         drive(0,0);
 
         // Rise lifts
@@ -102,6 +97,14 @@ public class SimpleAuto extends LinearOpMode {
         sleep(2900);
         robot.liftMotor1.setPower(0);
         robot.liftMotor2.setPower(0);
+
+
+        // Turn the robot right
+        spin(0.5);
+        sleep(600);
+
+        //Park, stop the motors
+        drive(0,0);
 
         //Drive the robot forward
         drive(0.5,0);
