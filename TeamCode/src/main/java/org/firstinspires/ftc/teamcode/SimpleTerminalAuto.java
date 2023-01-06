@@ -88,7 +88,7 @@ public class SimpleTerminalAuto extends LinearOpMode {
 
         // Drive the robot sideways
         drive(0,0.5);
-        sleep(3000); // stay here on the code for 1 second, don't move on to the next instructions.
+        sleep(2000); // stay here on the code for 1 second, don't move on to the next instructions.
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

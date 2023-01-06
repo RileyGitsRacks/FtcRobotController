@@ -87,7 +87,7 @@ public class SimpleAuto extends LinearOpMode {
 
         // Drive the robot forward
         drive(0.5,0);
-        sleep(1450); // stay here on the code for 1 second, don't move on to the next instructions.
+        sleep(1300); // stay here on the code for 1 second, don't move on to the next instructions.
 
         drive(0,0);
 
@@ -141,7 +141,7 @@ public class SimpleAuto extends LinearOpMode {
 
         //Drive the robot backward
         drive(-0.5,0);
-        sleep(1450);
+        sleep(1300);
 
         //Park, stop the motors
         drive(0,0);
