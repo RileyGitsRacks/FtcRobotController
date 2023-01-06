@@ -30,15 +30,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name="Mecanum: Pole Autonomous Right", group="Mecanum")
+@Autonomous(name="Mecanum: Pole Autonomous Left", group="Mecanum")
 //@Disabled
-public class SimpleAuto extends LinearOpMode {
+public class SimpleAutoLeft extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareMecanum robot = new HardwareMecanum();
@@ -99,8 +97,8 @@ public class SimpleAuto extends LinearOpMode {
         robot.liftMotor2.setPower(0);
 
 
-        // Turn the robot right
-        spin(0.5);
+        // Turn the robot left
+        spin(-0.5);
         sleep(600);
 
         //Park, stop the motors
@@ -124,9 +122,10 @@ public class SimpleAuto extends LinearOpMode {
         /*drive(-0.5,0);
         sleep(100);*/
 
-        // Turn the robot left
-        spin(-0.5);
+        // Turn the robot right
+        spin(0.5);
         sleep(600);
+
 
         //Park, stop the motors
         drive(0,0);
@@ -143,16 +142,19 @@ public class SimpleAuto extends LinearOpMode {
         drive(-0.5,0);
         sleep(1450);
 
+
         //Park, stop the motors
         drive(0,0);
         sleep(500);
 
+
         // Drive the robot sideways
-        drive(0,0.5);
+        drive(0,-0.5);
         sleep(3000);
 
         //Park, stop the motors
         drive(0,0);
+
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

@@ -30,15 +30,31 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+/**
+ * This file illustrates the concept of driving a path based on time.
+ * The code is structured as a LinearOpMode
+ *
+ * The code assumes that you do NOT have encoders on the wheels,
+ *   otherwise you would use: RobotAutoDriveByEncoder;
+ *
+ *   The desired path in this example is:
+ *   - Drive forward for 3 seconds
+ *   - Spin right for 1.3 seconds
+ *   - Drive Backward for 1 Second
+ *
+ *  The code is written in a simple form with no optimizations.
+ *  However, there are several ways that this type of sequence could be streamlined,
+ *
+ * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
+ * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
+ */
 
-@Autonomous(name="Mecanum: Pole Autonomous Right", group="Mecanum")
+@Autonomous(name="Mecanum: Left Terminal", group="Mecanum")
 //@Disabled
-public class SimpleAuto extends LinearOpMode {
+public class SimpleTerminalAutoLeft extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareMecanum robot = new HardwareMecanum();
@@ -53,14 +69,6 @@ public class SimpleAuto extends LinearOpMode {
         robot.backRightDrive.setPower(drive + strafe);
     }
 
-    void spin(double power) {
-
-        robot.frontLeftDrive.setPower(power);
-        robot.frontRightDrive.setPower(-power);
-        robot.backLeftDrive.setPower(power);
-        robot.backRightDrive.setPower(-power);
-    }
-
 
     @Override
     public void runOpMode() {
@@ -73,86 +81,14 @@ public class SimpleAuto extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
-        // Do this thing
-        int lift1Pos = robot.liftMotor1.getCurrentPosition();
-        int lift2Pos = robot.liftMotor2.getCurrentPosition();
-
-        double clawPosition              = robot.CLAW_HOME;          // Servo's position
-        final double CLAW_SPEED          = 0.10;                    // Sets rate to move servo
-
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
-        // Drive the robot forward
-        drive(0.5,0);
-        sleep(1450); // stay here on the code for 1 second, don't move on to the next instructions.
-
-        drive(0,0);
-
-        // Rise lifts
-        robot.liftMotor1.setPower(1);
-        robot.liftMotor2.setPower(1);
-        sleep(2900);
-        robot.liftMotor1.setPower(0);
-        robot.liftMotor2.setPower(0);
-
-
-        // Turn the robot right
-        spin(0.5);
-        sleep(600);
-
-        //Park, stop the motors
-        drive(0,0);
-
-        //Drive the robot forward
-        /*drive(0.5,0);
-        sleep(100);*/
-
-        //Park, stop the motors
-        drive(0,0);
-        sleep(700);
-
-        robot.clawServo.setPosition(180);
-        sleep(1000);
-
-        robot.clawServo.setPosition(0);
-        sleep(500);
-
-        //Drive the robot backward
-        /*drive(-0.5,0);
-        sleep(100);*/
-
-        // Turn the robot left
-        spin(-0.5);
-        sleep(600);
-
-        //Park, stop the motors
-        drive(0,0);
-        sleep(500);
-
-        //Lower lifts
-        robot.liftMotor1.setPower(-1);
-        robot.liftMotor2.setPower(-1);
-        sleep(3000);
-        robot.liftMotor1.setPower(0);
-        robot.liftMotor2.setPower(0);
-
-        //Drive the robot backward
-        drive(-0.5,0);
-        sleep(1450);
-
-        //Park, stop the motors
-        drive(0,0);
-        sleep(500);
-
         // Drive the robot sideways
-        drive(0,0.5);
-        sleep(3000);
-
-        //Park, stop the motors
-        drive(0,0);
+        drive(0,-0.5);
+        sleep(3000); // stay here on the code for 1 second, don't move on to the next instructions.
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
