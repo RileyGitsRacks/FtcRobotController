@@ -52,9 +52,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Mecanum: Left Terminal", group="Mecanum")
+@Autonomous(name="Mecanum: Top Left Terminal", group="Mecanum")
 //@Disabled
-public class SimpleTerminalAutoLeft extends LinearOpMode {
+public class TopLeftTerminalAuto extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareMecanum robot = new HardwareMecanum();
@@ -89,6 +89,10 @@ public class SimpleTerminalAutoLeft extends LinearOpMode {
         // Drive the robot sideways
         drive(0,-0.5);
         sleep(1500); // stay here on the code for 1 second, don't move on to the next instructions.
+
+        //Drive robot forward
+        drive(0.5,0);
+        sleep(3900);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
