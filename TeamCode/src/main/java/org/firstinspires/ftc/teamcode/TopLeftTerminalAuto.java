@@ -88,7 +88,7 @@ public class TopLeftTerminalAuto extends LinearOpMode {
 
         // Drive the robot sideways
         drive(0,-0.5);
-        sleep(1500); // stay here on the code for 1 second, don't move on to the next instructions.
+        sleep(5000); // stay here on the code for 1 second, don't move on to the next instructions.
 
         //Drive robot forward
         drive(0.5,0);

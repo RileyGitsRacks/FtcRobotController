@@ -119,7 +119,7 @@ public class MecanumTeleop extends LinearOpMode {
             int lift2Pos = robot.liftMotor2.getCurrentPosition();
 
             // Use gamepad DPAD UP & DOWN
-            if (gamepad1.dpad_up && lift1Pos <= 1350)
+            /*if (gamepad1.dpad_up && lift1Pos <= 1350)
                 robot.liftMotor1.setPower(1);
             else if (gamepad1.dpad_down && lift1Pos > -10 && lift2Pos <= 0)
                 robot.liftMotor1.setPower(-1);
@@ -132,6 +132,22 @@ public class MecanumTeleop extends LinearOpMode {
                 robot.liftMotor2.setPower(-1);
             else
                 robot.liftMotor2.setPower(0);
+            */
+
+            if (gamepad1.dpad_up)
+                robot.liftMotor1.setPower(1);
+            else if (gamepad1.dpad_down && lift1Pos > -10)
+                robot.liftMotor1.setPower(-1);
+            else
+                robot.liftMotor1.setPower(0);
+
+            if (gamepad1.dpad_up)
+                robot.liftMotor2.setPower(1);
+            else if (gamepad1.dpad_down && lift2Pos > 0)
+                robot.liftMotor2.setPower(-1);
+            else
+                robot.liftMotor2.setPower(0);
+
 
             /*int turretPos = robot.turretMotor.getCurrentPosition();
 
