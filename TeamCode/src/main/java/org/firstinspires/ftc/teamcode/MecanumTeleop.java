@@ -74,7 +74,7 @@ public class MecanumTeleop extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            double spin = gamepad1.right_stick_x * 0.5;
+            double spin = gamepad1.right_stick_x * 10;
 
             if (Math.abs(spin) > 0.1) {
                 // if someone is moving the right joystick, spin
@@ -86,8 +86,8 @@ public class MecanumTeleop extends LinearOpMode {
             }
             else {
                 // if no one is pressing the right joystick, do the normal driving code
-                y1 = -gamepad1.left_stick_y * 0.5;
-                x1 = gamepad1.left_stick_x * 0.5;
+                y1 = -gamepad1.left_stick_y * 10;
+                x1 = gamepad1.left_stick_x * 10;
 
 
                 // need to rotate 45 degrees
@@ -119,23 +119,22 @@ public class MecanumTeleop extends LinearOpMode {
             int lift2Pos = robot.liftMotor2.getCurrentPosition();
 
             // Use gamepad DPAD UP & DOWN
-            /*if (gamepad1.dpad_up && lift1Pos <= 1350)
+            if (gamepad1.dpad_up && lift1Pos <= 1400)
                 robot.liftMotor1.setPower(1);
             else if (gamepad1.dpad_down && lift1Pos > -10 && lift2Pos <= 0)
                 robot.liftMotor1.setPower(-1);
             else
                 robot.liftMotor1.setPower(0);
 
-            if (gamepad1.dpad_up && lift1Pos >= 1300)
+            if (gamepad1.dpad_up && lift1Pos >= 1400)
                 robot.liftMotor2.setPower(1);
-            else if (gamepad1.dpad_down && lift1Pos >= 1300 && lift2Pos > 0)
+            else if (gamepad1.dpad_down && lift1Pos >= 1400 && lift2Pos > 0)
                 robot.liftMotor2.setPower(-1);
             else
                 robot.liftMotor2.setPower(0);
-            */
 
-            if (gamepad1.dpad_up)
-                robot.liftMotor1.setPower(1);
+
+            /*robot.liftMotor1.setPower(1);
             else if (gamepad1.dpad_down && lift1Pos > -10)
                 robot.liftMotor1.setPower(-1);
             else
@@ -146,7 +145,7 @@ public class MecanumTeleop extends LinearOpMode {
             else if (gamepad1.dpad_down && lift2Pos > 0)
                 robot.liftMotor2.setPower(-1);
             else
-                robot.liftMotor2.setPower(0);
+                robot.liftMotor2.setPower(0); */
 
 
             /*int turretPos = robot.turretMotor.getCurrentPosition();
